@@ -24,3 +24,26 @@ def load_climate_indicator_data(file):
         country_data: Dataframe with country names as columns
         
     """
+     # Read the CSV file and skip the first 4 rows
+    df = pd.read_csv(file, skiprows=4)
+    
+    # Drop unnecessary columns
+    df = df.iloc[:, :-1]
+    
+    # Create a copy of the dataset with years as columns
+    year_data = df.copy()
+    
+    # Create a dataset with countries as columns
+    country_data = df.set_index(["Country Name", "Indicator Name"])
+    country_data.drop(["Country Code", "Indicator Code"], axis=1, inplace=True)
+    
+    # Transpose the countries dataframe
+    country_data = country_data.T
+    
+    # Return the years and countries dataframes
+    return year_data, country_data
+
+
+filename = 'climate_indicators.csv'
+data_frame, countries = load_climate_indicator_data(filename)
+
