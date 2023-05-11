@@ -1,0 +1,26 @@
+# Importing libraries
+import pycountry
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from err_ranges import err_ranges
+from sklearn.cluster import KMeans
+from scipy.optimize import curve_fit
+from sklearn.preprocessing import StandardScaler
+
+
+# Function to read Climate Indicator data from a CSV file and return two dataframes
+def load_climate_indicator_data(file):
+    """
+    This function loads the data and converts it into two formats:
+    One has years as columns and the other has country names as columns.
+    
+    Parameter:
+        file: Name of the data file.
+    
+    Returns:
+        year_data: Dataframe with years as columns
+        country_data: Dataframe with country names as columns
+        
+    """
